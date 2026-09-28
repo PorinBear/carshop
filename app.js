@@ -1,16 +1,547 @@
-const cars=[
- {name:'Nexa X8',type:'Sähkö',price:54900,range:'550 km',power:'350 hv',image:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80',desc:'Laatutason sähkö-SUV, jossa yhdistyvät voima, turvallisuus ja huipputeknologia.'},
- {name:'Velo R',type:'Coupé',price:49300,range:'420 km',power:'320 hv',image:'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=900&q=80',desc:'Fastback-muotoilu, vakaa ajo ja virtaa jokaiseen kaarteeseen.'},
- {name:'Horizon S',type:'Perhe',price:46800,range:'480 km',power:'245 hv',image:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80',desc:'Tilava, turvallinen ja älykäs perheauto, joka tekee arjesta sujuvaa.'},
- {name:'Summit 4',type:'SUV',price:58200,range:'600 km',power:'380 hv',image:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80',desc:'Monipuolinen maastourheilija, joka sopii kaupunkiin ja vaativiin olosuhteisiin.'},
- {name:'Nova E',type:'Sähkö',price:41400,range:'390 km',power:'204 hv',image:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80',desc:'Sileä, hiljainen ja tehokas kaupunkimalli modernille elämäntavalle.'},
- {name:'Apex GT',type:'Sport',price:82900,range:'—',power:'640 hv',image:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80',desc:'Suorituskykyä ja ajamisen iloa ilman kompromisseja.'}
-];
-const euro=n=>new Intl.NumberFormat('fi-FI').format(n)+' €';
-function card(car){return `<article class="car-card"><div class="car-image"><img src="${car.image}" alt="${car.name}" loading="lazy"><span class="car-tag">${car.type}</span><button class="heart" aria-label="Lisää suosikkeihin">♡</button></div><div class="car-info"><div class="car-title"><h3>${car.name}</h3><strong>${euro(car.price)}</strong></div><p>${car.desc}</p><div class="specs"><span>↗ ${car.range}</span><span>⚡ ${car.power}</span></div><div class="card-actions"><button class="button button-small button-dark" data-details="${car.name}">Katso tiedot</button><button class="button button-small button-outline" data-add="${car.name}">Varaa koeajo</button></div></div></article>`}
-function render(list,target){if(!target)return;target.innerHTML=list.map(card).join('')||'<div class="empty">Hakusi ei tuottanut tuloksia. Kokeile toista hakusanaa.</div>';const count=document.querySelector('#resultCount');if(count)count.textContent=`${list.length} autoa löytyi`}
-function cart(){const items=JSON.parse(localStorage.getItem('novaCart')||'[]');document.querySelectorAll('#cartCount').forEach(x=>x.textContent=items.length)}
-function initCatalog(){const grid=document.querySelector('#carGrid');if(!grid)return;let filter=new URLSearchParams(location.search).get('type')||'Kaikki';const search=document.querySelector('#searchInput');const sort=document.querySelector('#sortSelect');function update(){let list=cars.filter(c=>(filter==='Kaikki'||c.type===filter)&&(!search.value||`${c.name} ${c.type}`.toLowerCase().includes(search.value.toLowerCase())));if(sort.value==='low')list.sort((a,b)=>a.price-b.price);if(sort.value==='high')list.sort((a,b)=>b.price-a.price);render(list,grid)}document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));update()});search.oninput=update;sort.onchange=update;update()}
-function modal(name){const c=cars.find(x=>x.name===name),box=document.querySelector('#modalContent');if(!box)return;box.innerHTML=`<img class="modal-image" src="${c.image}" alt="${c.name}"><p class="eyebrow">${c.type}</p><h2>${c.name}</h2><p>${c.desc}</p><div class="modal-specs"><b>${euro(c.price)}<small>alkaen</small></b><b>${c.range}<small>toimintasäde</small></b><b>${c.power}<small>teho</small></b></div><a class="button button-primary" href="contact.html">Varaa koeajo ↗</a>`;document.querySelector('#carModal').classList.remove('hidden')}
-document.addEventListener('click',e=>{const detail=e.target.closest('[data-details]'),add=e.target.closest('[data-add]');if(detail)modal(detail.dataset.details);if(add){const list=JSON.parse(localStorage.getItem('novaCart')||'[]');if(!list.includes(add.dataset.add))list.push(add.dataset.add);localStorage.setItem('novaCart',JSON.stringify(list));cart();add.textContent='Varattu ✓';add.disabled=true}});document.querySelector('#closeModal')?.addEventListener('click',()=>document.querySelector('#carModal').classList.add('hidden'));document.querySelector('#carModal')?.addEventListener('click',e=>{if(e.target.id==='carModal')e.target.classList.add('hidden')});
-const featured=document.querySelector('#featuredCars');if(featured)render(cars.slice(0,3),featured);initCatalog();cart();document.querySelector('#contactForm')?.addEventListener('submit',e=>{e.preventDefault();document.querySelector('#formMessage').textContent='Kiitos! Pyyntösi vastaanotettiin. Olemme sinuun yhteydessä pian.';e.target.reset()});
+:root {
+    --bg: #0b0f14;
+    --bg-dark: #05080c;
+    --border: #1a222c;
+    --text: #fff;
+    --text-muted: #9fb3c8;
+    --primary: #00e5ff;
+    --primary-dark: #0099cc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.site-header {
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: var(--primary);
+}
+
+.cart-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-btn span {
+    background: var(--primary);
+    color: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.hero {
+    background: linear-gradient(to right, #0b0f14, #101826);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--bg);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.bg-dark {
+    background: var(--bg-dark);
+}
+
+.toolbar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    flex: 1;
+    padding: 12px 15px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 5px;
+}
+
+.filter-select {
+    padding: 12px 15px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 5px;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.car-card {
+    background: #111826;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.car-image {
+    width: 100%;
+    height: 200px;
+    background: #1a222c;
+    object-fit: cover;
+}
+
+.car-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.car-content {
+    padding: 20px;
+}
+
+.car-content h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.car-content p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.car-specs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.car-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.car-btn {
+    width: 100%;
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.car-btn:hover {
+    background: var(--primary-dark);
+}
+
+.showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.showcase-image {
+    background: #1a222c;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 400px;
+}
+
+.showcase-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.showcase-info h3 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.showcase-info p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.specs {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.specs div strong {
+    display: block;
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.specs div small {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.finance-calc {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    background: #111826;
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.calc-input label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.calc-input input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.calc-input span {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.calc-result {
+    background: var(--bg-dark);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.calc-result p {
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.calc-result h3 {
+    font-size: 32px;
+    color: var(--primary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: #111826;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card .icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.info-card {
+    background: #111826;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.info-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: var(--bg-dark);
+    border-left: 1px solid var(--border);
+    transition: right 0.3s;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.cart-drawer.open {
+    right: 0;
+}
+
+.cart-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h3 {
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h4 {
+    margin: 0 0 5px 0;
+}
+
+.cart-item-info p {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 0 0 8px 0;
+}
+
+.cart-item-price {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cart-total strong {
+    color: var(--primary);
+}
+
+.site-footer {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .nav-wrap {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .finance-calc {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        flex-direction: column;
+    }
+
+    .cart-drawer {
+        width: 100%;
+        right: -100%;
+    }
+}
