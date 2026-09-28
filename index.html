@@ -1,19 +1,86 @@
 <!doctype html>
 <html lang="fi">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Nova Ride — Uusi tapa löytää auto</title>
-  <meta name="description" content="Nova Ride on moderni autokauppa. Löydä sähköauto, SUV tai sporttinen coupé.">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="NovaRide – moderni ajoneuvojen markkinointi- ja myyntikonsepti premium-autoille, yritysajoneuvoille, moottoripyörille ja matkailuajoneuvoille.">
+  <title>NovaRide — Premium Vehicles</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-dot"></span>NOVA<span>RIDE</span></a><nav class="main-nav" aria-label="Päävalikko"><a class="active" href="index.html">Etusivu</a><a href="catalog.html">Autot</a><a href="tuning.html">Tuning</a><a href="solar.html">Energia</a><a href="contact.html">Yhteys</a></nav><a class="cart-link" href="catalog.html#cart" aria-label="Ostoskori">Ostoskori <b id="cartCount">0</b></a></div></header>
-<main>
-<section class="hero"><div class="container hero-grid"><div class="hero-copy"><p class="eyebrow">Tulevaisuuden ajokokemus</p><h1>Löydä auto, joka liikkuu <em>sinun</em> tahdillasi.</h1><p class="lead">Huolella valittu mallisto, läpinäkyvä hinnoittelu ja asiantuntijat, jotka auttavat oikean valinnan tekemisessä.</p><div class="hero-actions"><a class="button button-primary" href="catalog.html">Tutustu autoihin <span>↗</span></a><a class="text-link" href="contact.html">Varaa koeajo <span>→</span></a></div><div class="hero-stats"><div><strong>24</strong><span>valittua mallia</span></div><div><strong>5★</strong><span>asiakastyytyväisyys</span></div><div><strong>48 h</strong><span>nopea toimitus</span></div></div></div><div class="hero-visual"><div class="hero-orb"></div><img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=85" alt="Musta moderni urheiluauto" loading="eager"><div class="floating-card"><span class="live-dot"></span><div><strong>Suosikki juuri nyt</strong><small>Nexa X8 · alkaen €54 900</small></div><span class="arrow">↗</span></div></div></div></section>
-<section class="section-spacing"><div class="container"><div class="section-heading"><div><p class="eyebrow">Valitse tyylisi</p><h2>Autoja jokaiseen päivään.</h2></div><a class="text-link" href="catalog.html">Näytä koko mallisto →</a></div><div class="category-grid"><a class="category-card category-suv" href="catalog.html?type=SUV"><span>SUV</span><strong>Tilaa elämälle</strong><small>Vakaana joka tiellä</small></a><a class="category-card category-electric" href="catalog.html?type=Elektrinen"><span>SÄHKÖ</span><strong>Liiku fiksummin</strong><small>Hiljainen, nopea, puhdas</small></a><a class="category-card category-sport" href="catalog.html?type=Sport"><span>SPORT</span><strong>Tunne tie</strong><small>Suorituskykyä ilman kompromisseja</small></a></div></div></section>
-<section class="section-spacing featured"><div class="container"><div class="section-heading"><div><p class="eyebrow">Poimintamme</p><h2>Valmiina lähtöön.</h2></div></div><div id="featuredCars" class="car-grid"></div></div></section>
-<section class="cta-band"><div class="container cta-inner"><div><p class="eyebrow">Etkö tiedä mistä aloittaa?</p><h2>Tehdään siitä helppoa.</h2><p>Varaa maksuton 30 minuutin autoneuvonta.</p></div><a class="button button-light" href="contact.html">Varaa aika ↗</a></div></section>
-</main><footer class="site-footer"><div class="container footer-inner"><a class="brand" href="index.html"><span class="brand-dot"></span>NOVA<span>RIDE</span></a><p>© 2026 Nova Ride · Helsinki</p><a href="mailto:hello@novaride.fi">hello@novaride.fi</a></div></footer>
-<script src="app.js"></script></body></html>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">N</span><span>Nova<span>Ride</span></span></a>
+      <nav class="main-nav" aria-label="Päänavigaatio">
+        <a aria-current="page" href="index.html">Etusivu</a><a href="catalog.html">Ajoneuvot</a><a href="services.html">Palvelut</a><a href="services.html#rahoitus">Rahoitus</a><a href="contact.html">Yhteys</a>
+      </nav>
+      <a class="nav-cta" href="catalog.html">Katso ajoneuvot</a>
+      <button class="menu-button" data-menu-button aria-expanded="false" aria-label="Avaa valikko">☰</button>
+    </div>
+    <nav class="container mobile-nav" data-mobile-nav aria-label="Mobiilinavigaatio">
+      <a href="index.html">Etusivu</a><a href="catalog.html">Ajoneuvot</a><a href="services.html">Palvelut</a><a href="contact.html">Yhteys</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Premium vehicles · moderni autokauppa</p>
+          <h1>Laatu liikuttaa <span>elämääsi.</span></h1>
+          <p class="lead">NovaRide yhdistää premium-tason ajoneuvot, selkeän digitaalisen esittelyn, rahoitus- ja leasing-polut sekä henkilökohtaisen hankintapalvelun. Ei tavarataloa verkossa — vaan kiinnostuksesta kauppaan vievä kokemus.</p>
+          <div class="actions"><a class="button button-primary" href="catalog.html">Tutustu valikoimaan →</a><a class="button button-secondary" href="services.html">Näin NovaRide toimii</a></div>
+        </div>
+        <div class="hero-visual" aria-label="NovaRide premium-ajoneuvon konseptikuva">
+          <svg class="hero-car" viewBox="0 0 680 300" aria-hidden="true">
+            <path d="M112 190h61l46-89h235l76 89h55c27 0 49 22 49 49v12H54v-12c0-27 26-49 58-49Z" fill="currentColor" opacity=".72"/>
+            <path d="M234 119h204l47 71H197l37-71Z" fill="#11161d" opacity=".92"/>
+            <path d="M263 132h78v50h-103l25-50Zm94 0h70l40 50H357v-50Z" fill="#5aa8ff" opacity=".22"/>
+            <circle cx="190" cy="244" r="47" fill="#0b0e13" stroke="#f6bd2a" stroke-width="10"/><circle cx="506" cy="244" r="47" fill="#0b0e13" stroke="#f6bd2a" stroke-width="10"/>
+          </svg>
+          <div class="hero-note"><span>Digitaalinen showroom</span><span>Ajoneuvo • Rahoitus • Yhteydenotto</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container category-grid">
+        <a class="category-card" href="catalog.html"><div class="category-icon">A</div><h3>Henkilöautot</h3><p>Premium-, käyttö- ja harrasteautot selkeästi esiteltynä.</p></a>
+        <a class="category-card" href="catalog.html"><div class="category-icon">P</div><h3>Pakettiautot</h3><p>Työhön, yritykselle ja liikkuvaan liiketoimintaan.</p></a>
+        <a class="category-card" href="catalog.html"><div class="category-icon">M</div><h3>Moottoripyörät</h3><p>Valikoidut pyörät ja kiinnostavat harrastekohteet.</p></a>
+        <a class="category-card" href="catalog.html"><div class="category-icon">R</div><h3>Matkailuajoneuvot</h3><p>Vapauteen, reissuihin ja ympärivuotiseen käyttöön.</p></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Poiminnat</p><h2>Ajoneuvot ensin. Häly pois ympäriltä.</h2></div><p>Alla olevat kohteet ovat käyttöliittymän demodataa. Tuotantoversiossa kortit kytketään oikeaan varastoon ja ilmoitusdataan.</p></div>
+        <div class="vehicle-grid" id="featuredVehicles"></div>
+        <div class="actions"><a class="button button-secondary" href="catalog.html">Avaa koko katalogi →</a></div>
+      </div>
+    </section>
+
+    <section class="section process">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Ostopolku</p><h2>Markkinointi, joka johtaa seuraavaan tekoon.</h2></div><p>Yhdistimme kolmen autoprojektin toimivat ajatukset yhteen: selkeä valikoima, digitaalinen esittely, rahoitus ja henkilökohtainen palvelu.</p></div>
+        <div class="steps-grid">
+          <article class="step-card"><span class="step-number">01</span><h3>Löydä oikea</h3><p>Hakeminen, kategoriat ja harkittu ajoneuvovalikoima ilman turhia sivuhaaroja.</p></article>
+          <article class="step-card"><span class="step-number">02</span><h3>Tutustu digitaalisesti</h3><p>Kuvat, tiedot, myöhemmin 360°/video ja virtuaalinen esittely samaan näkymään.</p></article>
+          <article class="step-card"><span class="step-number">03</span><h3>Rahoita järkevästi</h3><p>Rahoitus- ja leasing-arvio tukee päätöstä, mutta varsinainen tarjous tulee kumppanilta.</p></article>
+          <article class="step-card"><span class="step-number">04</span><h3>Vie kauppa maaliin</h3><p>Yksi selkeä yhteydenotto, vaihtoauto/hankinta ja sovittu toimitus.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cta-panel">
+        <div><p class="eyebrow">NovaRide</p><h2>Ei geneeristä verkkokauppaa. Ajoneuvobisneksen myyntikone.</h2><p>Seuraavaksi kytketään oikeat myyntikohteet, yhteydenotot, rahoitus/leasing ja analytiikka.</p></div>
+        <div class="cta-actions"><a class="button button-primary" href="contact.html">Ota yhteyttä</a><a class="button button-secondary" href="services.html">Palvelut</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><span>NovaRide — kehitysversio</span><div class="footer-links"><a href="catalog.html">Ajoneuvot</a><a href="services.html">Palvelut</a><a href="contact.html">Yhteys</a></div></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
