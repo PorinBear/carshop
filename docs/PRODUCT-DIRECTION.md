@@ -28,3 +28,8 @@
 
 ## Ei julkiseksi
 Tähän repoon ei dokumentoida palvelun sisäisiä agenttiratkaisuja, salaisia integraatioita, tunnuksia, avaimia, keskeneräisiä kaupallisia mekanismeja tai kaikkia tulevia projektisuunnitelmia.
+
+
+## Visuaalinen suunta 29.9.2026
+
+NovaRiden jatkosuunta: rauhallinen premium-ohjaamo, tumma hiili/musta pohja, hillityt siniharmaat ja lämpimät metallisävyt, paljon tyhjää tilaa ja selvästi painettavat toimintopainikkeet. Vältetään neonvärien ylilyöntiä, korttiseinää ja tarpeetonta informaatiotiheyttä. Normaali autokauppa säilyy selkeänä; Virtual voi käyttää samaa hillittyä teknistä design-kieltä.
