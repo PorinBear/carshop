@@ -1,35 +1,39 @@
-# NovaRide — unified automotive concept
+# Nova Ride
 
-NovaRide on yhdistetty autoliike-/ajoneuvomarkkinoinnin kehitysversio. Tämä repo kokoaa aiempien `carshop`, `novaride` ja `ridenova`-kokeilujen käyttökelpoiset ideat yhteen selkeään kokonaisuuteen.
+Nova Ride kokoaa yhteen modernin autokaupan, virtuaalisen asioinnin ja sähköisen liikkumisen palvelut.
 
-## Mitä säilytettiin
+## Yksi autokauppa, kaksi kokemusta
 
-- premium-henkinen, responsiivinen ajoneuvosivusto
-- ajoneuvokatalogi, haku, kategoriat ja lajittelu
-- henkilöautot, pakettiautot, moottoripyörät ja matkailuajoneuvot
-- digitaalinen showroom / etäesittelyn kehityssuunta
-- rahoitus- ja leasing-polku
-- hankintapalvelu, vaihtoauto ja yritysajoneuvot
-- tuning/personointi palveluna, ei irrallisena verkkokauppana
+**Autokauppa** on ensisijainen näkymä: oikeat autot, selkeä mallisto, vaihtoautot, koeajo, rahoitus/leasing ja yhteydenotto.
 
-## Mitä poistettiin tästä konseptista
+**Virtual** on erillinen vaihtoehtoinen asiointitapa: auton tutkiminen etänä, ohjattu esittely ja myöhemmin laajennettava virtuaalinen showroom. Virtuaalipuoli ei korvaa tavallista autokauppaa.
 
-- aurinkovoima- ja energiaosio
-- geneerinen ostoskori/kassa autoille
-- irralliset fitness/verkkokauppakokeilut
-- vanhat selaimeen tallentuneet challenge-/saved-resource -tiedostot
-- korruptoituneet tiedostonimet ja sekoittuneet README/CSS/JS-sisällöt
-- fiktiivinen sähköautomallisto pääkonseptina
+## Sähköinen ekosysteemi
 
-## Sivut
+Nova Ride tuo päällisin puolin samaan palveluun myös:
+- auton latauksen ja älylatauksen
+- koti- ja yrityslatauksen
+- aurinkopaneelit
+- akku- ja energiavarastot
+- energianhallinnan
+- sähköisen liikkumisen kokonaisuuden
 
-- `index.html` — markkinointivetoinen etusivu
-- `catalog.html` — ajoneuvokatalogin demo
-- `services.html` — hankinta, vaihto, yritysautot, rahoitus/leasing, showroom ja personointi
-- `contact.html` — yhteydenottopolun käyttöliittymädemo
-- `styles.css` — yhteinen visuaalinen järjestelmä
-- `app.js` — demodata, katalogisuodatus, rahoitusarvio ja lomakkeen UI
+Tavoite ei ole tehdä energiakaupasta etusivun pääasiaa, vaan näyttää että auton ympärille voidaan rakentaa toimiva kokonaisuus.
 
-## Tärkeä status
+## Muut palvelut
 
-Sivusto on kehitys-/markkinointiprototyyppi. Ajoneuvot, hinnat ja tiedot ovat demodataa, eivät live-varastoa. Rahoituslaskuri on suuntaa-antava käyttöliittymädemo eikä luottotarjous. Oikeat yritystiedot, yhteydenottobackend, varastointegraatio ja rahoituskumppanit kytketään ennen tuotantojulkaisua.
+Mukana säilytetään autokauppaan luontevasti liittyvät ideat, kuten tuning, lisävarusteet, rahoitus, leasing ja digitaaliset palvelut. Keskeneräisiä sisäisiä ratkaisuja, toteutuksen yksityiskohtia tai tulevien projektien kaikkea sisältöä ei julkaista.
+
+## Kehitystila
+
+Neljästä rinnakkaisesta autoprojektista yhdistetään hyödyllinen sisältö tähän repoon. Päällekkäiset demot ja vanhat kokeilut poistuvat yhdistämisen jälkeen.
+
+Seuraava vaihe:
+1. sisältö ja ominaisuudet yhteen
+2. rikkinäisen tiedostorakenteen siivous
+3. oikeat automallit ja kuvat
+4. realistisempi, vaaleampi premium-autokauppa
+5. Virtual omaksi teknisemmäksi kokemukseksi
+6. myöhemmin vuodenaikojen mukaan elävä käyttöliittymä
+
+> Julkinen repo näyttää tuotteen idean ja käyttäjälle näkyvät ominaisuudet. Sisäistä arkkitehtuuria ja keskeneräisiä kilpailuetua tuovia ratkaisuja ei dokumentoida tänne.
